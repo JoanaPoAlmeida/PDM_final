@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "368559255942",
+    "project_id": "pdmtf-30d2c",
+    "storage_bucket": "pdmtf-30d2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368559255942:android:7685e8dc1f0d18bea03c07",
+        "android_client_info": {
+          "package_name": "pt.ubi.di.pmd.agrupame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368559255942-47ma7oormh1tpqhh2h7n8ob788v51vt9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn1d1Bpbw9O1pHjPvuukJm-Adbx5Iok2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368559255942-47ma7oormh1tpqhh2h7n8ob788v51vt9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
