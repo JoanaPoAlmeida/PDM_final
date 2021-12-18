@@ -1,0 +1,18 @@
+Index: AgrupaMe/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"pt.ubi.di.pmd.agrupame\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.AgrupaMe\">\n        <activity\n            android:name=\".RegisterActivity\"\n            android:exported=\"true\" />\n        <activity\n            android:name=\".LoginActivity\"\n            android:exported=\"true\" />\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/AgrupaMe/app/src/main/AndroidManifest.xml b/AgrupaMe/app/src/main/AndroidManifest.xml
+--- a/AgrupaMe/app/src/main/AndroidManifest.xml	(revision b6d55a6ebe76d38a2f1834b61cc64934108e366e)
++++ b/AgrupaMe/app/src/main/AndroidManifest.xml	(date 1639416613214)
+@@ -4,7 +4,6 @@
+ 
+     <application
+         android:allowBackup="true"
+-        android:icon="@mipmap/ic_launcher"
+         android:label="@string/app_name"
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"

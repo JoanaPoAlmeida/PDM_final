@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminApp">
         <activity
+            android:name=".ShowTeams"
+            android:exported="true" />
+        <activity
             android:name=".CreateEvent"
             android:exported="true" />
         <activity
