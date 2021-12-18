@@ -1,5 +1,6 @@
 package pt.ubi.di.pdm.adminapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -8,11 +9,15 @@ import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -24,8 +29,8 @@ public class CreateEvent extends AppCompatActivity {
     Event event;
 
 
-    String nameEvent = "";
-    String numberParticipants="";
+
+
 
     DatePickerDialog picker;
     DatePickerDialog picker1;
@@ -34,6 +39,7 @@ public class CreateEvent extends AppCompatActivity {
     EditText particEditText;
     EditText endDate;
     EditText startDate;
+    Button addEve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +57,29 @@ public class CreateEvent extends AppCompatActivity {
         startDate.setInputType(InputType.TYPE_NULL);
         endDate=(EditText) findViewById(R.id.et_endDate);
         endDate.setInputType(InputType.TYPE_NULL);
+        addEve=(Button) findViewById(R.id.btn_addEve);
 
         event = new Event();
+        ref = database.getInstance().getReference().child("Event");
+/*
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //if(DataSnapshot.exists()){
+                    //if(DataSnapshot.exists()){
+                    //maxid = (int) DataSnapshot.getChildrenCount();
+                }else{
 
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+*/
         endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,8 +116,19 @@ public class CreateEvent extends AppCompatActivity {
                 picker1.show();
             }
         });
+        addEve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                event.setName(nameEveEditText.getText().toString());
+                event.setNumParticipantes(particEditText.getText().toString());
+                event.setDataInicio(startDate.getText().toString());
+                event.setDataFim(endDate.getText().toString());
 
+                ref.child(String.valueOf(maxid+1)).setValue(event);
+            }
+        });
     }
+
 }
 
 

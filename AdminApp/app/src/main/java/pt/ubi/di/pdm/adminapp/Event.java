@@ -4,7 +4,7 @@ public class Event {
     public String name;
     public String dataInicio;
     public String dataFim;
-    public int numParticipantes;
+    public String numParticipantes;
 
     public Event() {}
 
@@ -32,11 +32,11 @@ public class Event {
         this.dataFim = dataFim;
     }
 
-    public int getNumParticipantes() {
+    public String getNumParticipantes() {
         return numParticipantes;
     }
 
-    public void setNumParticipantes(int numParticipantes) {
+    public void setNumParticipantes(String numParticipantes) {
         this.numParticipantes = numParticipantes;
     }
 }
