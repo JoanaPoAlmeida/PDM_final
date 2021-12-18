@@ -34,11 +34,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
+    <Button
+        android:id="@+id/btn_show_events"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="Visualizar eventos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_show_teams"
+        app:layout_constraintVertical_bias="0.916"
+        tools:layout_editor_absoluteX="0dp" />
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="85dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_width="174dp"
+        android:layout_height="159dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_new_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

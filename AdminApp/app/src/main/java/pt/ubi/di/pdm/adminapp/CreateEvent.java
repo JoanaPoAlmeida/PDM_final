@@ -1,5 +1,6 @@
 package pt.ubi.di.pdm.adminapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -11,18 +12,34 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
 public class CreateEvent extends AppCompatActivity {
-    String nameEvent = "";
-    String numberParticipants="";
+
+    FirebaseDatabase database;
+    DatabaseReference ref;
+    int maxid=0;
+    Event event;
+
+
+
+
 
     DatePickerDialog picker;
     DatePickerDialog picker1;
-    EditText eText;
-    EditText eText1;
+
+    EditText nameEveEditText;
+    EditText particEditText;
+    EditText endDate;
+    EditText startDate;
+    Button addEve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +51,36 @@ public class CreateEvent extends AppCompatActivity {
         setContentView(R.layout.activity_create_event);
 
 
-        EditText nameEditText = (EditText) findViewById(R.id.et_nameEve);
-        String fullName = nameEditText.getText().toString();
+        nameEveEditText=(EditText) findViewById(R.id.et_nameEve);
+        particEditText= (EditText) findViewById(R.id.et_numPartic);
+        startDate=(EditText) findViewById(R.id.et_startDate);
+        startDate.setInputType(InputType.TYPE_NULL);
+        endDate=(EditText) findViewById(R.id.et_endDate);
+        endDate.setInputType(InputType.TYPE_NULL);
+        addEve=(Button) findViewById(R.id.btn_addEve);
 
-        EditText ageEditText = (EditText) findViewById(R.id.age);
-        String age = ageEditText.getText().toString();
+        event = new Event();
+        ref = database.getInstance().getReference().child("Event");
+/*
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //if(DataSnapshot.exists()){
+                    //if(DataSnapshot.exists()){
+                    //maxid = (int) DataSnapshot.getChildrenCount();
+                }else{
 
-        EditText phoneEditText = (EditText) findViewById(R.id.et_nameEve);
-        String phone = phoneEditText.getText().toString();
+                }
+            }
 
-        EditText addressEditText = (EditText) findViewById(R.id.et_nameEve);
-        String address = addressEditText.getText().toString();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        eText=(EditText) findViewById(R.id.editText);
-        eText.setInputType(InputType.TYPE_NULL);
+            }
+        });
 
-        eText1=(EditText) findViewById(R.id.editText1);
-        eText1.setInputType(InputType.TYPE_NULL);
-
-        eText.setOnClickListener(new View.OnClickListener() {
+*/
+        endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -64,13 +92,13 @@ public class CreateEvent extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                endDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
             }
         });
-        eText1.setOnClickListener(new View.OnClickListener() {
+        startDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -82,14 +110,25 @@ public class CreateEvent extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                eText1.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                startDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker1.show();
             }
         });
+        addEve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                event.setName(nameEveEditText.getText().toString());
+                event.setNumParticipantes(particEditText.getText().toString());
+                event.setDataInicio(startDate.getText().toString());
+                event.setDataFim(endDate.getText().toString());
 
+                ref.child(String.valueOf(maxid+1)).setValue(event);
+            }
+        });
     }
+
 }
 
 

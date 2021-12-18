@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.30572916666666666" />
         <entry key="app/src/main/res/layout/activity_initial_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2884963768115942" />
+        <entry key="app/src/main/res/layout/activity_show_events.xml" value="0.30572916666666666" />
+        <entry key="app/src/main/res/layout/activity_show_teams.xml" value="0.15552178318135765" />
       </map>
     </option>
   </component>
