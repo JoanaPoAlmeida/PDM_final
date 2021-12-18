@@ -21,6 +21,14 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
         //EXISTE APENAS ENQUANTO LOGIN E REGISTO NÃO ESTA FEITO
         findViewById(R.id.btnMain).setOnClickListener(new View.OnClickListener() {
             @Override
