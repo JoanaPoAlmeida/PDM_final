@@ -175,8 +175,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                         //Redirect to Login layout
+                                        Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(myIntent);
                                     }else{
                                         Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
 
