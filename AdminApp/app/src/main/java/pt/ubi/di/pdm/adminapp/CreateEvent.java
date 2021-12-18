@@ -8,21 +8,32 @@ import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
 public class CreateEvent extends AppCompatActivity {
+
+    FirebaseDatabase database;
+    DatabaseReference ref;
+    int maxid=0;
+    Event event;
+
+
     String nameEvent = "";
     String numberParticipants="";
 
     DatePickerDialog picker;
     DatePickerDialog picker1;
-    EditText eText;
-    EditText eText1;
+
+    EditText nameEveEditText;
+    EditText particEditText;
+    EditText endDate;
+    EditText startDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +45,17 @@ public class CreateEvent extends AppCompatActivity {
         setContentView(R.layout.activity_create_event);
 
 
-        EditText nameEditText = (EditText) findViewById(R.id.et_nameEve);
-        String fullName = nameEditText.getText().toString();
+        nameEveEditText=(EditText) findViewById(R.id.et_nameEve);
+        particEditText= (EditText) findViewById(R.id.et_numPartic);
+        startDate=(EditText) findViewById(R.id.et_startDate);
+        startDate.setInputType(InputType.TYPE_NULL);
+        endDate=(EditText) findViewById(R.id.et_endDate);
+        endDate.setInputType(InputType.TYPE_NULL);
 
-        EditText ageEditText = (EditText) findViewById(R.id.age);
-        String age = ageEditText.getText().toString();
+        event = new Event();
 
-        EditText phoneEditText = (EditText) findViewById(R.id.et_nameEve);
-        String phone = phoneEditText.getText().toString();
 
-        EditText addressEditText = (EditText) findViewById(R.id.et_nameEve);
-        String address = addressEditText.getText().toString();
-
-        eText=(EditText) findViewById(R.id.editText);
-        eText.setInputType(InputType.TYPE_NULL);
-
-        eText1=(EditText) findViewById(R.id.editText1);
-        eText1.setInputType(InputType.TYPE_NULL);
-
-        eText.setOnClickListener(new View.OnClickListener() {
+        endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -64,13 +67,13 @@ public class CreateEvent extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                endDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
             }
         });
-        eText1.setOnClickListener(new View.OnClickListener() {
+        startDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -82,7 +85,7 @@ public class CreateEvent extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                eText1.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                startDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker1.show();
