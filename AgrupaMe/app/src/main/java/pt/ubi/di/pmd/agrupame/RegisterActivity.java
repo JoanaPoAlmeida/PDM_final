@@ -109,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
     private void registerUser( ) {
         String FullName = etFullName.getText().toString().trim();
-        String username = etusername.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String gender = SpinnerGender.getSelectedItem().toString().trim();
         String dateBirth = TextViewDateText.getText().toString().trim();
@@ -119,11 +118,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         if(FullName.isEmpty()){
             etFullName.setError("Full Name is required");
             etFullName.requestFocus();
-            return;
-        }
-        if(username.isEmpty()){
-            etusername.setError("username is required");
-            etusername.requestFocus();
             return;
         }
         if(email.isEmpty()){
@@ -166,13 +160,15 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if(task.isSuccessful()){
-                            User user = new User(FullName, username,  email, gender, dateBirth);
+                            User user = new User(FullName,  email, gender, dateBirth);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+
                                     if(task.isSuccessful()){
                                         Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                         //Redirect to Login layout
