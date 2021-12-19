@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableRight="@drawable/ic_baseline_calendar_today_24"
-        android:hint="Birth Date"
+        android:hint="Date of Birth"
         style="@style/EditText"
         app:layout_constraintTop_toBottomOf="@+id/SpinnerGender"
         app:layout_constraintStart_toStartOf="parent"
