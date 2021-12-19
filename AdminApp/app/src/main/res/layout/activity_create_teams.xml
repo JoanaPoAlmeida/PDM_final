@@ -22,13 +22,12 @@
 
     <EditText
         android:id="@+id/et_nameEve"
-        android:layout_width="278dp"
-        android:layout_height="45dp"
+        android:layout_width="287dp"
+        android:layout_height="46dp"
         android:layout_marginTop="332dp"
         android:ems="10"
         android:hint="Nº de elementos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
