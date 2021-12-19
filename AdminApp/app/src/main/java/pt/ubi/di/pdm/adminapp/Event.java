@@ -1,42 +1,52 @@
 package pt.ubi.di.pdm.adminapp;
-
+//public String name;
+//public String dataInicio;
+//public String dataFim;
+//public String numParticipantes;
 public class Event {
-    public String name;
-    public String dataInicio;
-    public String dataFim;
-    public String numParticipantes;
 
-    public Event() {}
+    // string variable for
+    // storing employee name.
+    private String eventName;
 
-    public String getName() {
-        return name;
+    // string variable for storing
+    // employee contact number
+    private String eventContactNumber;
+
+    // string variable for storing
+    // employee address.
+    private String eventAddress;
+
+    // an empty constructor is
+    // required when using
+    // Firebase Realtime Database.
+    public Event() {
+
     }
 
-    public void setName(String name) {
-        this.name = name;
+    // created getter and setter methods
+    // for all our variables.
+    public String getEventName() {
+        return eventName;
     }
 
-    public String getDataInicio() {
-        return dataInicio;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
-    public void setDataInicio(String dataInicio) {
-        this.dataInicio = dataInicio;
+    public String getEventContactNumber() {
+        return eventContactNumber;
     }
 
-    public String getDataFim() {
-        return dataFim;
+    public void setEventContactNumber(String eventContactNumber) {
+        this.eventContactNumber = eventContactNumber;
     }
 
-    public void setDataFim(String dataFim) {
-        this.dataFim = dataFim;
+    public String getEventAddress() {
+        return eventAddress;
     }
 
-    public String getNumParticipantes() {
-        return numParticipantes;
-    }
-
-    public void setNumParticipantes(String numParticipantes) {
-        this.numParticipantes = numParticipantes;
+    public void setEventAddress(String eventAddress) {
+        this.eventAddress = eventAddress;
     }
 }
