@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
@@ -50,6 +51,13 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         etEmail = (EditText) findViewById(R.id.etEmail);
         etpassword = (EditText) findViewById(R.id.etPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
+
+        //if user is already logged in
+        if(mAuth.getCurrentUser() != null){
+            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(myIntent);
+            finish();
+        }
 
         //Banner to firstActivity
         imgVBanner = (ImageView) findViewById(R.id.banner);
@@ -163,9 +171,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
                         if(task.isSuccessful()){
                             User user = new User(FullName,  email, gender, dateBirth);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                            mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
@@ -175,13 +184,13 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                                         Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(myIntent);
                                     }else{
-                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
                                     }
                                 }
                             });
                             }else{
-                            Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
