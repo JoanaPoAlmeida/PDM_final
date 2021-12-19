@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button bAdmin;
+    private Button bAdmin, bRegister, bLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -23,13 +23,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bAdmin = findViewById(R.id.btn_tomain);
+        bAdmin.setOnClickListener(this::onClick);
 
-        bAdmin.setOnClickListener(new View.OnClickListener() {
+        bRegister = findViewById(R.id.btnRegister);
+        bRegister.setOnClickListener(this::onClick);
 
-            @Override
-            public void onClick(View v) {
+        bLogin = findViewById(R.id.btnLogin);
+        bLogin.setOnClickListener(this::onClick);
+    }
+
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.btn_tomain:
                 startActivity(new Intent(MainActivity.this,  Initial_Page.class));
-            }
-        });
+                break;
+            case R.id.btnRegister:
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                break;
+            case R.id.btnLogin:
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                break;
+
+        }
     }
 }

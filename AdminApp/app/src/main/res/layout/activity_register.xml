@@ -17,22 +17,23 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome Admin"
+        android:padding="10dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/banner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <EditText
         android:id="@+id/etName"
         android:hint="Full Name"
         android:inputType="textPersonName"
         style="@style/EditText"
-        app:layout_constraintTop_toBottomOf="@+id/banner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <EditText
-        style="@style/EditText"
-        android:id="@+id/etUsername"
-        android:hint="username"
-        android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/etName"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
@@ -42,37 +43,18 @@
         android:id="@+id/etEmail"
         android:hint="email"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        app:layout_constraintTop_toBottomOf="@+id/etName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <Spinner
-        android:id="@+id/SpinnerGender"
-        style="@style/EditText"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
-
-    <TextView
-        android:id="@+id/btnDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_baseline_calendar_today_24"
-        android:hint="Birth Date"
-        style="@style/EditText"
-        app:layout_constraintTop_toBottomOf="@+id/SpinnerGender"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
     <EditText
         android:id="@+id/etPassword"
         style="@style/EditText"
         android:inputType="textPassword"
         android:hint="password"
-        app:layout_constraintTop_toBottomOf="@+id/btnDate"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -94,10 +76,5 @@
         app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

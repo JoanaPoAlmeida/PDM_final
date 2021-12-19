@@ -1,4 +1,4 @@
-package pt.ubi.di.pmd.agrupame;
+package pt.ubi.di.pdm.adminapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,19 +26,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class RegisterActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity {
+
 
     private FirebaseAuth mAuth;
     private ImageView imgVBanner;
 
-    private Spinner SpinnerGender;
-    private TextView TextViewDateText;
     private EditText etFullName, etpassword, etConfirmPassword, etEmail;
     private Button ButtonRegister;
 
     private String date;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,33 +57,19 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
         //Banner to firstActivity
         imgVBanner = (ImageView) findViewById(R.id.banner);
-        imgVBanner.setOnClickListener(this);
+        imgVBanner.setOnClickListener(this::onClick);
 
-        //date of birth
-        TextViewDateText = (TextView) findViewById(R.id.btnDate);
-        findViewById(R.id.btnDate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialog();
-            }
-        });
-
-        //gender spinner
-        SpinnerGender = (Spinner) findViewById(R.id.SpinnerGender);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpinnerGender.setAdapter(adapter);
 
         //Register Button
         ButtonRegister = (Button) findViewById(R.id.btnRegister);
-        ButtonRegister.setOnClickListener(this);
+        ButtonRegister.setOnClickListener(this::onClick);
 
     }
 
     public void onClick(View v){
         switch(v.getId()){
             case R.id.banner:
-                startActivity(new Intent(this, FirstActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.btnRegister:
                 registerUser();
@@ -96,29 +79,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
-    private void showDatePickerDialog(){
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                this,
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        );
-        datePickerDialog.show();
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int dayOfMonth, int month, int year) {
-        date = dayOfMonth + "/" + month + "/" + year;
-        TextViewDateText.setText(date);
-    }
-
-
     private void registerUser( ) {
         String FullName = etFullName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
-        String gender = SpinnerGender.getSelectedItem().toString().trim();
-        String dateBirth = TextViewDateText.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
@@ -135,11 +98,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             etEmail.setError("Please provide a valid email");
             etEmail.requestFocus();
-            return;
-        }
-        if(dateBirth.isEmpty()){
-            TextViewDateText.setError("date of Birth is required");
-            TextViewDateText.requestFocus();
             return;
         }
         if(password.isEmpty()){
@@ -169,30 +127,31 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(FullName,  email, gender, dateBirth);
+                            User user = new User(FullName, email);
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                             mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
 
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                        //Redirect to Login layout
-                                        Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
-                                        startActivity(myIntent);
-                                    }else{
-                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                                //Redirect to Login layout
+                                                Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                                                startActivity(myIntent);
+                                            }else{
+                                                Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
-                                    }
-                                }
-                            });
-                            }else{
+                                            }
+                                        }
+                                    });
+                        }else{
                             Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
+
 
 }

@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminApp">
         <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".CreateTeams"
             android:exported="true" />
         <activity
