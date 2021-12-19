@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CandidatarActivity"
+            android:name=".EquipasActivity"
             android:exported="true" />
         <activity
-            android:name=".EventosActivity"
+            android:name=".CandidatarActivity"
             android:exported="true" />
         <activity
             android:name=".CandidaturasActivity"
