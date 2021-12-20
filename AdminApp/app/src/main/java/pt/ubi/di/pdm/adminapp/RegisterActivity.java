@@ -44,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
     private byte[] salt;
 
     private String date;
+    private Spinner SpinnerEvent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etpassword = (EditText) findViewById(R.id.etPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
+
 
 
 

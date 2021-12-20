@@ -53,20 +53,10 @@
 
     <EditText
         style="@style/EditText"
-        android:id="@+id/etUsername"
-        android:hint="username"
-        android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/etName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <EditText
-        style="@style/EditText"
         android:id="@+id/etEmail"
         android:hint="email"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        app:layout_constraintTop_toBottomOf="@+id/etName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

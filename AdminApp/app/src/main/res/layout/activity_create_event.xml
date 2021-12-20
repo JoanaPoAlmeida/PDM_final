@@ -8,6 +8,8 @@
 
     tools:context=".MainActivity">
 
+
+
     <View
         android:id="@+id/containerTop"
         android:layout_width="wrap_content"
@@ -15,89 +17,79 @@
         android:background="@drawable/blue_container"
         android:radius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvBack"
+        style="@style/backTextView"
+        android:text="Back"
+        app:layout_constraintTop_toTopOf="@+id/containerTop"
+        app:layout_constraintStart_toStartOf="@+id/containerTop" />
+
 
     <TextView
-        android:id="@+id/title"
+        android:id="title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:text="Candidaturas"
         android:fontFamily="@font/poppins_bold"
-        android:text="Criar evento"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/containerTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/containerTop"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/idEventName"
         style="@style/EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginBottom="20dp"
         android:hint="Nome do evento"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/idEdtStartDate"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintTop_toBottomOf="@id/containerTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/idEdtStartDate"
+        style="@style/EditText"
+        android:hint="Data de inicio"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@+id/idEventName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/idEdtEndDate"
         style="@style/EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
         android:hint="Data de fim"
-        app:layout_constraintBottom_toTopOf="@+id/idEdtNumParticip"
+        android:inputType="phone"
         app:layout_constraintTop_toBottomOf="@+id/idEdtStartDate"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/idEdtNumParticip"
         style="@style/EditText"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="64dp"
+        android:inputType="phone"
         android:hint="Numero de participantes"
-        app:layout_constraintBottom_toTopOf="@+id/idBtnSendData"
         app:layout_constraintTop_toBottomOf="@+id/idEdtEndDate"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/idBtnSendData"
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
         android:text="Adicionar evento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintTop_toBottomOf="@id/idEdtNumParticip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/idEdtStartDate"
-        style="@style/EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:hint="Data de inicio"
-        android:importantForAutofill="no"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/idEdtEndDate"
-        app:layout_constraintTop_toBottomOf="@+id/idEventName"
-        tools:layout_editor_absoluteX="40dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
