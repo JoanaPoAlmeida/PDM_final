@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,6 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText etFullName, etpassword, etConfirmPassword, etEmail;
     private Button ButtonRegister;
+
+    private Register_pwd passwd;
+    private String secure_password;
+    private byte[] salt;
 
     private String date;
     @Override
@@ -132,6 +138,16 @@ public class RegisterActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             User user = new User(FullName, email);
 
+                            try {
+                                passwd = new Register_pwd(email, password);
+                                secure_password = passwd.getSecure_password();
+                                salt = passwd.getSalt();
+                            } catch (NoSuchProviderException e) {
+                                e.printStackTrace();
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
+
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                             mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -139,6 +155,15 @@ public class RegisterActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
 
                                             if(task.isSuccessful()){
+
+                                                //Connect to database and safe the email, salt and secure_password
+                                                String last_email = passwd.getEmail();
+                                                DatabaseReference mRef =  FirebaseDatabase.getInstance().getReference().child("PSecure_Password").child(last_email);
+                                                mRef.child("email").setValue(email);
+                                                mRef.child("salt").setValue(salt);
+                                                mRef.child("secure_password").setValue(secure_password);
+
+
                                                 Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                                 //Redirect to Login layout
                                                 Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
