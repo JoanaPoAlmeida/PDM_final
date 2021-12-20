@@ -26,6 +26,7 @@ public class CreateEvent extends AppCompatActivity {
     // EditText and buttons.
     private EditText eventNameEdt, eventDateEdt, eventAddressEdt, eventParticEdt;
     private Button sendDatabtn;
+    private TextView goBack;
 
     // creating a variable for our
     // Firebase Database.

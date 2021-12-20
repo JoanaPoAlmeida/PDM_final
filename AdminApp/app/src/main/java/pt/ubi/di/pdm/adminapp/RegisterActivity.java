@@ -40,8 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button ButtonRegister;
 
     private Register_pwd passwd;
-    private String secure_password;
-    private byte[] salt;
+    public String secure_password;
+    public byte[] salt;
 
     private String date;
     private Spinner SpinnerEvent;
@@ -149,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-
+                            System.out.println(secure_password);
                             User user = new User(FullName, email, secure_password, salt);
 
 
