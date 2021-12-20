@@ -43,7 +43,7 @@ public class CandidatarActivity extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference = databaseReference.child("users");
+        databaseReference = databaseReference.child("EventInfo");
 
         lvEvents = (ListView) findViewById(R.id.listViewEventos);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
@@ -54,7 +54,7 @@ public class CandidatarActivity extends AppCompatActivity {
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                User event = (User) snapshot.getValue(User.class);
+                Event event = (Event) snapshot.getValue(Event.class);
                 String eventString = String.valueOf(event);
                 arrayAdapter.add(eventString);
             }

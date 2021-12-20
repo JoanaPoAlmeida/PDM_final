@@ -19,6 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
         android:id="@+id/tvBack"
         style="@style/backTextView"
@@ -26,16 +28,9 @@
         app:layout_constraintTop_toTopOf="@+id/containerTop"
         app:layout_constraintStart_toStartOf="@+id/containerTop" />
 
-    <TextView
-        android:id="@+id/tvBack"
-        style="@style/backTextView"
-        android:text="Back"
-        app:layout_constraintTop_toTopOf="@+id/containerTop"
-        app:layout_constraintStart_toStartOf="@+id/containerTop" />
-
 
     <TextView
-        android:id="title"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Candidaturas"
