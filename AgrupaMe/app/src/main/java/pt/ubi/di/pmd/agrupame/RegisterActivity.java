@@ -51,12 +51,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         etpassword = (EditText) findViewById(R.id.etPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 
-        //if user is already logged in
-        if(mAuth.getCurrentUser() != null){
-            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(myIntent);
-            finish();
-        }
+
 
         //Banner to firstActivity
         imgVBanner = (ImageView) findViewById(R.id.banner);
@@ -96,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+    //Apresenta um calendario para o utilizador escolher a data de nascimento
     private void showDatePickerDialog(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
@@ -107,6 +103,8 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         datePickerDialog.show();
     }
 
+
+    //Apresenta a data de nascimento escolhida pelo utilizador no TextView
     @Override
     public void onDateSet(DatePicker datePicker, int dayOfMonth, int month, int year) {
         date = dayOfMonth + "/" + month + "/" + year;
@@ -114,11 +112,12 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+    //Regista o utilizador na base de dados e adiciona os campos a tabela Users na base de dados
     private void registerUser( ) {
         String FullName = etFullName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String gender = SpinnerGender.getSelectedItem().toString().trim();
-        String dateBirth = TextViewDateText.getText().toString().trim();
+        String dateBirth = TextViewDateText.getText().toString().trim(); //PROVAVELMENTE EXISTE UM PROBLEMA AQUI--------------------------
         String password = etpassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
@@ -162,6 +161,8 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             etpassword.requestFocus();
             return;
         }
+
+        //Autentica o utilizador na firebase
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

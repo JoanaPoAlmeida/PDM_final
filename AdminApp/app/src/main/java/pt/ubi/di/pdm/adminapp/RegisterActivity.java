@@ -48,12 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         etpassword = (EditText) findViewById(R.id.etPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 
-        //if user is already logged in
-        if(mAuth.getCurrentUser() != null){
-            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(myIntent);
-            finish();
-        }
+
 
         //Banner to firstActivity
         imgVBanner = (ImageView) findViewById(R.id.banner);

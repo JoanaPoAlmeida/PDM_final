@@ -9,8 +9,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
     private Button bAdmin, bRegister, bLogin;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -19,6 +22,15 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        //if user is already logged in
+        if(mAuth.getCurrentUser() != null){
+            Intent myIntent = new Intent(getApplicationContext(), Initial_Page.class);
+            startActivity(myIntent);
+            finish();
+        }
 
         setContentView(R.layout.activity_main);
 
