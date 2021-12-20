@@ -8,16 +8,13 @@ import java.security.SecureRandom;
 public class Register_pwd {
 
     private String secure_password;
-    private String email;
     private byte[] salt;
 
     public Register_pwd(){}
 
-    public Register_pwd(String email, String password) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public Register_pwd(String password) throws NoSuchProviderException, NoSuchAlgorithmException {
         //generates the salt -> random array of bytes
         this.salt = Secure_salt();
-        //email serves as identifier
-        this.email = email;
 
         this.secure_password = SecurePassword(password, salt);
     }
@@ -28,10 +25,6 @@ public class Register_pwd {
 
     public byte[] getSalt() {
         return salt;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     //-> $salt = MD5(rand()) -> guardado com username para verificação da password
@@ -60,7 +53,7 @@ public class Register_pwd {
 
     private static byte[] Secure_salt() throws NoSuchProviderException, NoSuchAlgorithmException {
         //Always use SecureRandom generator
-        SecureRandom secureRandom = SecureRandom.getInstance("MD5","SUN");
+        SecureRandom secureRandom = SecureRandom.getInstance("MD5");
 
         //create array for salt
         byte[] salt = new byte[16]; //size of byte array = 16

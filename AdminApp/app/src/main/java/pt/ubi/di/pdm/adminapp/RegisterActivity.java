@@ -130,6 +130,16 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        try {
+            passwd = new Register_pwd(password);
+            secure_password = passwd.getSecure_password();
+            salt = passwd.getSalt();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -137,17 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
 
-                            try {
-                                passwd = new Register_pwd(email, password);
-                                secure_password = passwd.getSecure_password();
-                                salt = passwd.getSalt();
-                            } catch (NoSuchProviderException e) {
-                                e.printStackTrace();
-                            } catch (NoSuchAlgorithmException e) {
-                                e.printStackTrace();
-                            }
-
-                            User user = new User(FullName, email, secure_password, salt);
+                            User user = new User(FullName, email, password);
 
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
