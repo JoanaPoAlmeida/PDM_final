@@ -39,6 +39,7 @@ public class CreateEvent extends AppCompatActivity {
     // creating a variable for
     // our object class
     Event event1;
+    private TextView tvBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +49,10 @@ public class CreateEvent extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_create_event);
-        //back button
-        goBack = findViewById(R.id.tvBack);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CreateEvent.this,Initial_Page.class));
-            }
-        });
+
+        tvBack = (TextView) findViewById(R.id.tvBack);
+        tvBack.setOnClickListener(this::OnClick);
+
         // initializing our edittext and button
         eventNameEdt = findViewById(R.id.idEventName);
         eventDateEdt = findViewById(R.id.idEdtStartDate);
@@ -131,5 +128,14 @@ public class CreateEvent extends AppCompatActivity {
                 Toast.makeText(CreateEvent.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void OnClick(View v){
+        switch(v.getId()){
+            case R.id.tvBack:
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                break;
+        }
+
     }
 }

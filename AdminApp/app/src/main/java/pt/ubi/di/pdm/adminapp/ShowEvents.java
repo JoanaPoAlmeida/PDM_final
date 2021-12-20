@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 public class ShowEvents extends AppCompatActivity {
 
-    private TextView goBack;
+    private TextView tvBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,12 +21,18 @@ public class ShowEvents extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_show_events);
 
-        goBack = findViewById(R.id.tvBack);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ShowEvents.this,Initial_Page.class));
-            }
-        });
+
+        tvBack = (TextView) findViewById(R.id.tvBack);
+        tvBack.setOnClickListener(this::OnClick);
+    }
+
+    public void OnClick(View v){
+        switch(v.getId()){
+            case R.id.tvBack:
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                break;
+        }
+
+    
     }
 }

@@ -35,10 +35,6 @@ public class CandidatarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //tira a barra superior
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_candidatar);
 
@@ -46,17 +42,21 @@ public class CandidatarActivity extends AppCompatActivity {
         tvBack.setOnClickListener(this::OnClick);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Event");
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = databaseReference.child("users");
+
         lvEvents = (ListView) findViewById(R.id.listViewEventos);
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         lvEvents.setAdapter(arrayAdapter);
+
+
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String value = snapshot.getValue().toString();
-                arrayList.add(value);
-                arrayAdapter.notifyDataSetChanged();
+                User event = (User) snapshot.getValue(User.class);
+                String eventString = String.valueOf(event);
+                arrayAdapter.add(eventString);
             }
 
             @Override

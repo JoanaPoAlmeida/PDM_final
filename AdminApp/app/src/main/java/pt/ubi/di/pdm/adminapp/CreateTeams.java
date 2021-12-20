@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class CreateTeams extends AppCompatActivity {
-    private TextView goBack;
+
+    private Spinner SpinnerEvent;
+    private TextView tvBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +24,22 @@ public class CreateTeams extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_create_teams);
 
-        goBack = findViewById(R.id.tvBack);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CreateTeams.this,Initial_Page.class));
-            }
-        });
+        //event spinner
+        SpinnerEvent = (Spinner) findViewById(R.id.SpinnerEvents);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.event_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerEvent.setAdapter(adapter);
+
+        tvBack = (TextView) findViewById(R.id.tvBack);
+        tvBack.setOnClickListener(this::OnClick);
+    }
+
+    public void OnClick(View v){
+        switch(v.getId()){
+            case R.id.tvBack:
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                break;
+        }
+
     }
 }
