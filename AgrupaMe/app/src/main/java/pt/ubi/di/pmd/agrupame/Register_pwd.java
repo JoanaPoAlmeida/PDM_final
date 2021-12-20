@@ -17,15 +17,16 @@ public class Register_pwd {
     static Random random = new Random();
 
 
-    public Register_pwd(String password, String username) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public Register_pwd(String password, String username, String email) throws NoSuchProviderException, NoSuchAlgorithmException {
         byte[] salt = Secure_salt();
+        this.email = email;
         this.username = username;
         this.secure_password = getSecurePassword(password,salt);
     }
 
     //-> $salt = MD5(rand()) -> guardado com username para verificação da password
     //$rep = hash("SHA256",$salt,$pass);---> representação da password
-    //username + salt + rep -> guardados -> username -> salt + pass + sha256 = rep = rep -> confirma.
+    //username + salt + rep -> guardados -> email/username -> salt + pass + sha256 = rep = rep -> confirma.
     //Seguro e fiável.
 
     private static String getSecurePassword(String password, byte[] salt){
