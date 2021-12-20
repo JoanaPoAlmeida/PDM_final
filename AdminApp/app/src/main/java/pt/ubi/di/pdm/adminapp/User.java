@@ -7,10 +7,10 @@ public class User {
 
         public User(){}
 
-        public User(String fullname, String email, String secure_password){// byte[] salt){
+        public User(String fullname, String email, String secure_password, byte[] salt){
             this.fullname = fullname;
             this.email = email;
-            //this.salt = salt;
+            this.salt = salt;
             this.secure_password = secure_password;
         }
 

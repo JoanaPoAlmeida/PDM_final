@@ -147,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
 
-                            User user = new User(FullName, email, password);
+                            User user = new User(FullName, email, secure_password, salt);
 
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
