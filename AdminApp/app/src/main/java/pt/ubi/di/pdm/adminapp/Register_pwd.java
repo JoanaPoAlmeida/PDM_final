@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
+import java.nio.charset.StandardCharsets;
 
 public class Register_pwd {
 
@@ -15,7 +16,9 @@ public class Register_pwd {
 
     public Register_pwd(String password) throws NoSuchProviderException, NoSuchAlgorithmException {
         //generates the salt -> random array of bytes
-        this.salt_string = Secure_salt().toString();
+
+        this.salt = Secure_salt();
+        this.salt_string = new String(salt, StandardCharsets.UTF_8);
 
         this.secure_password = SecurePassword(password, salt);
     }
