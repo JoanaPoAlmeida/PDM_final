@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
             etpassword.requestFocus();
             return;
         }
-
+/*
         try {
             passwd = new Register_pwd(password);
             secure_password = passwd.getSecure_password();
@@ -142,15 +142,14 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
+*/
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            System.out.println(secure_password);
-                            User user = new User(FullName, email, secure_password, salt);
+                            User user = new User(FullName, email, password);
 
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

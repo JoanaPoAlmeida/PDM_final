@@ -182,8 +182,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(FullName, email, gender, dateBirth);
+                            User user = new User(FullName, email, password, gender, dateBirth);
 
+                            /*
                             try {
                                 passwd = new Register_pwd(email, password);
                                 secure_password = passwd.getSecure_password();
@@ -193,6 +194,8 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                             } catch (NoSuchAlgorithmException e) {
                                 e.printStackTrace();
                             }
+                            */
+
 
                             //Se autenticação for feita com sucesso adicionar dados do user a tabela users
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

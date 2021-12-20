@@ -52,7 +52,7 @@ public class Register_pwd {
         }catch(NoSuchAlgorithmException e){
             e.printStackTrace();
         }
-        System.out.println(generatedPassord);
+        //System.out.println(generatedPassord);
         return generatedPassord;
     }
 
@@ -66,7 +66,7 @@ public class Register_pwd {
         //get a random salt
         secureRandom.nextBytes(salt); //
 
-        System.out.println(salt);
+        //System.out.println(salt);
         return salt;
     }
 

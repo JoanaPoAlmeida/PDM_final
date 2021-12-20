@@ -69,8 +69,4 @@ public class Register_pwd {
         return salt;
     }
 
-    //receives the password
-    //private static boolean Verify_Login(String secure_password, byte[] salt, String pwd){
-
-   // }
 }
