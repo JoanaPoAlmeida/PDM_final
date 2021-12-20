@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -30,6 +31,7 @@ public class CandidatarActivity extends AppCompatActivity {
     ListView lvEvents;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
+    private Spinner SpinnerEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,12 @@ public class CandidatarActivity extends AppCompatActivity {
 
         tvBack = (TextView) findViewById(R.id.tvBack);
         tvBack.setOnClickListener(this::OnClick);
+
+        //event spinner
+        SpinnerEvent = (Spinner) findViewById(R.id.SpinnerEvents);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.event_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerEvent.setAdapter(adapter);
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();

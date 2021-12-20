@@ -25,6 +25,8 @@
         app:layout_constraintTop_toTopOf="@+id/containerTop"
         app:layout_constraintStart_toStartOf="@+id/containerTop" />
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +46,23 @@
         android:layout_marginTop="20dp"
         android:text="Escolha o evento ao qual se quer candidatar: "
         app:layout_constraintTop_toBottomOf="@id/containerTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Spinner
+        android:id="@+id/SpinnerEvents"
+        style="@style/EditText"
+        android:visibility="visible"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/subButton"
+        android:id="@+id/btnCandidatura"
+        android:text="Enviar Candidatura"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerEvents"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
