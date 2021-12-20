@@ -136,7 +136,6 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(FullName, email);
 
                             try {
                                 passwd = new Register_pwd(email, password);
@@ -148,6 +147,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
+                            User user = new User(FullName, email, secure_password, salt);
+
+
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                             mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -155,15 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
 
                                             if(task.isSuccessful()){
-
-                                                //Connect to database and safe the email, salt and secure_password
-                                                String last_email = passwd.getEmail();
-                                                DatabaseReference mRef =  FirebaseDatabase.getInstance().getReference().child("Secure_Password").child(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                                                mRef.child("email").setValue(email);
-                                                mRef.child("salt").setValue(salt);
-                                                mRef.child("secure_password").setValue(secure_password);
-
-
                                                 Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                                 //Redirect to Login layout
                                                 Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);

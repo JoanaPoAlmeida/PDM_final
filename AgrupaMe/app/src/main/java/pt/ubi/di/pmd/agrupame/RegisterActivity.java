@@ -197,7 +197,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
                                         //Connect to database and safe the email, salt and secure_password
                                         String last_email = passwd.getEmail();
-                                        DatabaseReference mRef =  FirebaseDatabase.getInstance().getReference().child("Secure_Password").child(last_email);
+                                        DatabaseReference mRef =  FirebaseDatabase.getInstance().getReference().child("login").child(last_email);
                                         mRef.child("email").setValue(email);
                                         mRef.child("salt").setValue(salt);
                                         mRef.child("secure_password").setValue(secure_password);
