@@ -56,7 +56,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_show_teams"
-        style="@style/Button"
+        style="@style/subButton"
         android:text="Visualizar equipas"
         app:layout_constraintTop_toBottomOf="@id/btn_create_team"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_show_events"
-        style="@style/Button"
+        style="@style/subButton"
         android:text="Visualizar eventos"
         app:layout_constraintTop_toBottomOf="@+id/btn_show_teams"
         app:layout_constraintStart_toStartOf="parent"/>
