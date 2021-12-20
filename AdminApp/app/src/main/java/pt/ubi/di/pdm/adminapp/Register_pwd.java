@@ -33,7 +33,7 @@ public class Register_pwd {
     //Seguro e fiável.
 
     //receives the password and the random array of bytes generated in the constructor
-    private static String SecurePassword(String password, byte[] salt){
+    private String SecurePassword(String password, byte[] salt){
         String generatedPassord = null;
         try{
             MessageDigest msgDigest = MessageDigest.getInstance("MD5");
@@ -48,10 +48,11 @@ public class Register_pwd {
         }catch(NoSuchAlgorithmException e){
             e.printStackTrace();
         }
+        System.out.println(generatedPassord);
         return generatedPassord;
     }
 
-    private static byte[] Secure_salt() throws NoSuchProviderException, NoSuchAlgorithmException {
+    private byte[] Secure_salt() throws NoSuchProviderException, NoSuchAlgorithmException {
         //Always use SecureRandom generator
         SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
 
@@ -60,6 +61,8 @@ public class Register_pwd {
 
         //get a random salt
         secureRandom.nextBytes(salt); //
+
+        System.out.println(salt);
         return salt;
     }
 

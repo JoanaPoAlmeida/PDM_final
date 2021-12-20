@@ -40,8 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button ButtonRegister;
 
     private Register_pwd passwd;
-    private String secure_password;
-    private byte[] salt;
+    public String secure_password;
+    public byte[] salt;
 
     private String date;
     @Override
