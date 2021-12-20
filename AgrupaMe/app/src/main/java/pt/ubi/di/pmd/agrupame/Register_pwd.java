@@ -8,7 +8,6 @@ import java.util.Random;
 public class Register_pwd {
 
     private String secure_password;
-    private String username;
     private String email;
     BigInteger hash;
     private byte[] rep;
@@ -17,10 +16,9 @@ public class Register_pwd {
     static Random random = new Random();
 
 
-    public Register_pwd(String password, String username, String email) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public Register_pwd(String password, String email) throws NoSuchProviderException, NoSuchAlgorithmException {
         byte[] salt = Secure_salt();
         this.email = email;
-        this.username = username;
         this.secure_password = getSecurePassword(password,salt);
     }
 
