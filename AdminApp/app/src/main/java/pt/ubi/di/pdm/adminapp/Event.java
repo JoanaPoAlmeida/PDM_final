@@ -17,6 +17,7 @@ public class Event {
     // employee address.
     private String eventAddress;
 
+    private String eventPartic;
     // an empty constructor is
     // required when using
     // Firebase Realtime Database.
@@ -48,5 +49,13 @@ public class Event {
 
     public void setEventAddress(String eventAddress) {
         this.eventAddress = eventAddress;
+    }
+
+    public String getEventPartic() {
+        return eventPartic;
+    }
+
+    public void setEventPartic(String eventPartic) {
+        this.eventPartic = eventPartic;
     }
 }

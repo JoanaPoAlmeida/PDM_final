@@ -20,7 +20,7 @@ public class CreateEvent extends AppCompatActivity {
 
     // creating variables for
     // EditText and buttons.
-    private EditText eventNameEdt, eventPhoneEdt, eventAddressEdt;
+    private EditText eventNameEdt, eventDateEdt, eventAddressEdt, eventParticEdt;
     private Button sendDatabtn;
 
     // creating a variable for our
@@ -38,12 +38,13 @@ public class CreateEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_event);
 
         // initializing our edittext and button
-        eventNameEdt = findViewById(R.id.idEdtEmployeeName);
-        eventPhoneEdt = findViewById(R.id.idEdtEmployeePhoneNumber);
-        eventAddressEdt = findViewById(R.id.idEdtEmployeeAddress);
+        eventNameEdt = findViewById(R.id.idEventName);
+        eventDateEdt = findViewById(R.id.idEdtStartDate);
+        eventAddressEdt = findViewById(R.id.idEdtEndDate);
+        eventParticEdt = findViewById(R.id.idEdtNumParticip);
 
         // below line is used to get the
         // instance of our FIrebase database.
@@ -65,30 +66,33 @@ public class CreateEvent extends AppCompatActivity {
 
                 // getting text from our edittext fields.
                 String name = eventNameEdt.getText().toString();
-                String phone = eventPhoneEdt.getText().toString();
+                String phone = eventDateEdt.getText().toString();
                 String address = eventAddressEdt.getText().toString();
+                String partic = eventParticEdt.getText().toString();
 
                 // below line is for checking weather the
                 // edittext fields are empty or not.
-                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(phone) && TextUtils.isEmpty(address)) {
+                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(phone) && TextUtils.isEmpty(address)&& TextUtils.isEmpty(partic)) {
                     // if the text fields are empty
                     // then show the below message.
                     Toast.makeText(CreateEvent.this, "Please add some data.", Toast.LENGTH_SHORT).show();
                 } else {
                     // else call the method to add
                     // data to our database.
-                    addDatatoFirebase(name, phone, address);
+                    addDatatoFirebase(name, phone, address, partic);
                 }
             }
         });
     }
 
-    private void addDatatoFirebase(String name, String phone, String address) {
+    private void addDatatoFirebase(String name, String phone, String address, String partic) {
         // below 3 lines of code is used to set
         // data in our object class.
         event1.setEventName(name);
         event1.setEventContactNumber(phone);
         event1.setEventAddress(address);
+        event1.setEventPartic(partic);
+
 
         // we are use add value event listener method
         // which is called with database reference.

@@ -1,58 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <!--EditText for adding employee name-->
+
+    <!--EditText for adding employee phone-->
+
+    <!--EditText for adding employee address-->
+
+    <!--Button for adding data to Firebase-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Criar evento"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
-        android:id="@+id/idEdtEmployeeName"
+        android:id="@+id/idEventName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:hint="Enter Employee Name"
+        android:layout_marginTop="120dp"
+        android:hint="Nome do evento"
         android:importantForAutofill="no"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <!--EditText for adding employee phone-->
     <EditText
-        android:id="@+id/idEdtEmployeePhoneNumber"
+        android:id="@+id/idEdtStartDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idEdtEmployeeName"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:hint="Enter employee phone number"
-        android:importantForAutofill="no"
-        android:inputType="phone" />
 
-    <!--EditText for adding employee address-->
+
+        android:layout_marginTop="20dp"
+        android:hint="Data de inicio"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@+id/idEventName"
+        tools:layout_editor_absoluteX="0dp" />
+
     <EditText
-        android:id="@+id/idEdtEmployeeAddress"
+        android:id="@+id/idEdtEndDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idEdtEmployeePhoneNumber"
-        android:layout_margin="10dp"
-        android:hint="Enter employee address"
-        android:inputType="textPostalAddress" />
+        android:layout_marginTop="16dp"
+        android:hint="Data de fim"
+        app:layout_constraintTop_toBottomOf="@+id/idEdtStartDate"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <!--Button for adding data to Firebase-->
+    <EditText
+        android:id="@+id/idEdtNumParticip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:hint="Numero de participantes"
+        app:layout_constraintBottom_toTopOf="@+id/idBtnSendData"
+        app:layout_constraintTop_toBottomOf="@+id/idEdtEndDate"
+        app:layout_constraintVertical_bias="0.941"
+        tools:layout_editor_absoluteX="0dp" />
+
     <Button
         android:id="@+id/idBtnSendData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idEdtEmployeeAddress"
-        android:layout_margin="10dp"
-        android:text="Add employee details"
-        android:textAllCaps="false" />
 
-</RelativeLayout>
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="172dp"
+        android:text="Adicionar evento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
