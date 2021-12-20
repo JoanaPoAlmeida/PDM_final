@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,6 +40,10 @@ public class CreateEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //tira a barra superior
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_create_event);
 
         // initializing our edittext and button
@@ -89,8 +95,8 @@ public class CreateEvent extends AppCompatActivity {
         // below 3 lines of code is used to set
         // data in our object class.
         event1.setEventName(name);
-        event1.setEventContactNumber(phone);
-        event1.setEventAddress(address);
+        event1.setEventStartDate(phone);
+        event1.setEventEndDate(address);
         event1.setEventPartic(partic);
 
 
