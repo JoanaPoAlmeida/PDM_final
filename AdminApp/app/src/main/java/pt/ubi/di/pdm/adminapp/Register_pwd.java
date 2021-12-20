@@ -9,12 +9,13 @@ public class Register_pwd {
 
     private String secure_password;
     private byte[] salt;
+    private String salt_string;
 
     public Register_pwd(){}
 
     public Register_pwd(String password) throws NoSuchProviderException, NoSuchAlgorithmException {
         //generates the salt -> random array of bytes
-        this.salt = Secure_salt();
+        this.salt_string = Secure_salt().toString();
 
         this.secure_password = SecurePassword(password, salt);
     }
@@ -23,8 +24,8 @@ public class Register_pwd {
         return secure_password;
     }
 
-    public byte[] getSalt() {
-        return salt;
+    public String getSalt() {
+        return salt_string;
     }
 
     //-> $salt = MD5(rand()) -> guardado com username para verificação da password

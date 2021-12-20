@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Register_pwd passwd;
     public String secure_password;
-    public byte[] salt;
+    public String salt;
 
     private String date;
     @Override
