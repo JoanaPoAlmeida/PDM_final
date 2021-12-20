@@ -18,6 +18,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvBack"
+        style="@style/backTextView"
+        android:text="Back"
+        app:layout_constraintTop_toTopOf="@+id/containerTop"
+        app:layout_constraintStart_toStartOf="@+id/containerTop" />
 
 
     <TextView
