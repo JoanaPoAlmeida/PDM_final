@@ -146,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-
+                            System.out.println(secure_password);
                             User user = new User(FullName, email, secure_password, salt);
 
 
