@@ -32,9 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
+        android:layout_marginBottom="20dp"
         android:hint="Nome do evento"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/idEdtStartDate"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -45,9 +47,11 @@
 
 
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:hint="Data de inicio"
         android:importantForAutofill="no"
         android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/idEdtEndDate"
         app:layout_constraintTop_toBottomOf="@+id/idEventName"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -55,8 +59,10 @@
         android:id="@+id/idEdtEndDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:hint="Data de fim"
+        app:layout_constraintBottom_toTopOf="@+id/idEdtNumParticip"
         app:layout_constraintTop_toBottomOf="@+id/idEdtStartDate"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -64,20 +70,17 @@
         android:id="@+id/idEdtNumParticip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="64dp"
         android:hint="Numero de participantes"
         app:layout_constraintBottom_toTopOf="@+id/idBtnSendData"
         app:layout_constraintTop_toBottomOf="@+id/idEdtEndDate"
-        app:layout_constraintVertical_bias="0.941"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/idBtnSendData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="172dp"
         android:text="Adicionar evento"
         app:layout_constraintBottom_toBottomOf="parent"

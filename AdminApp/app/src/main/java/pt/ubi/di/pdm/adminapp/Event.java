@@ -11,11 +11,11 @@ public class Event {
 
     // string variable for storing
     // employee contact number
-    private String eventContactNumber;
+    private String eventStartDate;
 
     // string variable for storing
     // employee address.
-    private String eventAddress;
+    private String eventEndDate;
 
     private String eventPartic;
     // an empty constructor is
@@ -35,20 +35,20 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public String getEventContactNumber() {
-        return eventContactNumber;
+    public String getEventStartDate() {
+        return eventStartDate;
     }
 
-    public void setEventContactNumber(String eventContactNumber) {
-        this.eventContactNumber = eventContactNumber;
+    public void setEventStartDate(String eventStartDate) {
+        this.eventStartDate = eventStartDate;
     }
 
-    public String getEventAddress() {
-        return eventAddress;
+    public String getEventEndDate() {
+        return eventEndDate;
     }
 
-    public void setEventAddress(String eventAddress) {
-        this.eventAddress = eventAddress;
+    public void setEventEndDate(String eventEndDate) {
+        this.eventEndDate = eventEndDate;
     }
 
     public String getEventPartic() {
