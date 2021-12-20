@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button logout;
+    private Button logout, bCandidatar, bCandidaturas, bEquipas;
 
 
     private FirebaseAuth mAuth;
@@ -34,52 +34,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logout = (Button) findViewById(R.id.btnLogout);
-        logout.setOnClickListener(this::onClick);
-
-        mAuth = FirebaseAuth.getInstance();
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
 
+        mAuth = FirebaseAuth.getInstance();
+
+        logout = (Button) findViewById(R.id.btnLogout);
+        logout.setOnClickListener(this::onClick);
+
+        bCandidatar = (Button) findViewById(R.id.btnCandidatura);
+        bCandidatar.setOnClickListener(this::onClick);
+
+        bCandidaturas = (Button) findViewById(R.id.btnVerCandidatura);
+        bCandidaturas.setOnClickListener(this::onClick);
+
+        bEquipas = (Button) findViewById(R.id.btnVerEquipas);
+        bEquipas.setOnClickListener(this::onClick);
+
+
         final TextView greetingTextView = (TextView) findViewById(R.id.welcome);
-        final TextView fullnameTextView = (TextView) findViewById(R.id.fullName);
-        final TextView emailTextView = (TextView) findViewById(R.id.email);
-        final TextView birthdateTextView = (TextView) findViewById(R.id.birthDate);
-        final TextView genderTextView = (TextView) findViewById(R.id.gender);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userprofile = snapshot.getValue(User.class);
-
                 if(userprofile != null){
                     String fullname = userprofile.fullname;
-                    String email = userprofile.email;
-                    String birthdate = userprofile.dateOfBirth;
-                    String gender = userprofile.dateOfBirth;
-
                     greetingTextView.setText("Welcome, "+ fullname + "!");
-                    fullnameTextView.setText(fullname);
-                    emailTextView.setText(email);
-                    birthdateTextView.setText(birthdate);
-                    genderTextView.setText(gender);
-
-
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
                 Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
-
-
             }
         });
     }
+
+    //Metodo OnClick para dirigir o utilizador para as varias atividades
 
     public void onClick(View v){
         switch (v.getId()){
@@ -87,8 +80,15 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this,FirstActivity.class));
                 break;
-
-
+            case R.id.btnCandidatura:
+                startActivity(new Intent(MainActivity.this, CandidatarActivity.class));
+                break;
+            case R.id.btnVerCandidatura:
+                startActivity(new Intent(MainActivity.this, CandidaturasActivity.class));
+                break;
+            case R.id.btnVerEquipas:
+                startActivity(new Intent(MainActivity.this, EquipasActivity.class));
+                break;
         }
     }
 

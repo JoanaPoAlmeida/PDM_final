@@ -4,65 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whiteY"
     tools:context=".Initial_Page">
 
-    <Button
-        android:id="@+id/btn_new_event"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Criar novo evento"
-        app:layout_constraintBottom_toTopOf="@+id/btn_create_team"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/btn_create_team"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:text="Formar equipas"
-        app:layout_constraintBottom_toTopOf="@+id/btn_show_teams"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/btn_show_teams"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
-        android:text="Visualizar equipas"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/btn_show_events"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:text="Visualizar eventos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_show_teams"
-        app:layout_constraintVertical_bias="0.916"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
-        android:id="@+id/btnLogout"
-        android:text="Logout"
-        android:layout_marginTop="550dp"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_margin="20dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <View
+        android:id="@+id/ContainerPhoto"
+        style="@style/container_user"
+        android:background="@drawable/user_container"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="174dp"
-        android:layout_height="159dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_new_event"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ContainerPhoto"
+        app:srcCompat="@drawable/username"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_new_event"
+        style="@style/Button"
+        android:text="Criar novo evento"
+        app:layout_constraintTop_toBottomOf="@+id/ContainerPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_create_team"
+        style="@style/Button"
+        android:text="Formar equipas"
+        app:layout_constraintTop_toBottomOf="@+id/btn_new_event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_show_teams"
+        style="@style/subButton"
+        android:text="Visualizar equipas"
+        app:layout_constraintTop_toBottomOf="@id/btn_create_team"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_show_events"
+        style="@style/subButton"
+        android:text="Visualizar eventos"
+        app:layout_constraintTop_toBottomOf="@+id/btn_show_teams"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/subButton"
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:text="Logout"
+        android:background="@drawable/logout_button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_show_events"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
