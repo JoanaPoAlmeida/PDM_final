@@ -200,30 +200,32 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
                             //Se autenticação for feita com sucesso adicionar dados do user a tabela users
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                            mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
+                            mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
 
-                                            if(task.isSuccessful()){
+                                    if(task.isSuccessful()){
 
-                                                //Connect to database and safe the email, salt and secure_password
-                                                String last_email = passwd.getEmail();
-                                                DatabaseReference mRef =  FirebaseDatabase.getInstance().getReference().child("PSecure_Password").child(last_email);
-                                                mRef.child("email").setValue(email);
-                                                mRef.child("salt").setValue(salt);
-                                                mRef.child("secure_password").setValue(secure_password);
+                                        //Connect to database and safe the email, salt and secure_password
+                                        String last_email = passwd.getEmail();
+                                        DatabaseReference mRef =  FirebaseDatabase.getInstance().getReference().child("Secure_Password").child(last_email);
+                                        mRef.child("email").setValue(email);
+                                        mRef.child("salt").setValue(salt);
+                                        mRef.child("secure_password").setValue(secure_password);
 
-                                                Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                                //Redirect to Login layout
-                                                Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                                startActivity(myIntent);
-                                            }else{
-                                                Toast.makeText(RegisterActivity.this, "Failed to register to table! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                        //Redirect to Login layout
+                                        Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(myIntent);
 
-                                            }
-                                        }
-                                    });
+
+
+                                    }else{
+                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+                            });
                             }else{
                             Toast.makeText(RegisterActivity.this, "Failed to connect! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
