@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(FullName, email);
+
 
                             try {
                                 passwd = new Register_pwd(email, password);
@@ -147,6 +147,10 @@ public class RegisterActivity extends AppCompatActivity {
                             } catch (NoSuchAlgorithmException e) {
                                 e.printStackTrace();
                             }
+
+                            User user = new User(FullName, email);
+
+                            //Se autenticação for feita com sucesso adicionar dados do user a tabela users
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                             mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
