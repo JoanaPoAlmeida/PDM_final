@@ -3,6 +3,7 @@ package pt.ubi.di.pdm.adminapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,7 @@ public class CreateEvent extends AppCompatActivity {
     // EditText and buttons.
     private EditText eventNameEdt, eventDateEdt, eventAddressEdt, eventParticEdt;
     private Button sendDatabtn;
+    private TextView goBack;
 
     // creating a variable for our
     // Firebase Database.
@@ -45,7 +48,14 @@ public class CreateEvent extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_create_event);
-
+        //back button
+        goBack = findViewById(R.id.tvBack);
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreateEvent.this,Initial_Page.class));
+            }
+        });
         // initializing our edittext and button
         eventNameEdt = findViewById(R.id.idEventName);
         eventDateEdt = findViewById(R.id.idEdtStartDate);
