@@ -8,16 +8,13 @@ import java.security.SecureRandom;
 public class Register_pwd {
 
     private String secure_password;
-    private String email;
     private byte[] salt;
 
     public Register_pwd(){}
 
-    public Register_pwd(String email, String password) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public Register_pwd(String password) throws NoSuchProviderException, NoSuchAlgorithmException {
         //generates the salt -> random array of bytes
         this.salt = Secure_salt();
-        //email serves as identifier
-        this.email = email;
 
         this.secure_password = SecurePassword(password, salt);
     }
@@ -30,10 +27,6 @@ public class Register_pwd {
         return salt;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     //-> $salt = MD5(rand()) -> guardado com username para verificação da password
     //$rep = hash("SHA256",$salt,$pass);---> representação da password
     //username + salt + rep -> guardados -> email/username -> salt + pass + sha256 = rep = rep -> confirma.
@@ -43,7 +36,7 @@ public class Register_pwd {
     private static String SecurePassword(String password, byte[] salt){
         String generatedPassord = null;
         try{
-            MessageDigest msgDigest = MessageDigest.getInstance("SHA256");
+            MessageDigest msgDigest = MessageDigest.getInstance("MD5");
             msgDigest.update(salt);
             byte[] bytes = msgDigest.digest(password.getBytes());
 
@@ -60,7 +53,7 @@ public class Register_pwd {
 
     private static byte[] Secure_salt() throws NoSuchProviderException, NoSuchAlgorithmException {
         //Always use SecureRandom generator
-        SecureRandom secureRandom = SecureRandom.getInstance("MD5","SUN");
+        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG","SUN");
 
         //create array for salt
         byte[] salt = new byte[16]; //size of byte array = 16
