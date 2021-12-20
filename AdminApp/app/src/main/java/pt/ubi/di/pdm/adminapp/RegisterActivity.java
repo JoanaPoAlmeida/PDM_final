@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,6 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText etFullName, etpassword, etConfirmPassword, etEmail;
     private Button ButtonRegister;
+
+    private Register_pwd passwd;
+    private String secure_password;
+    private byte[] salt;
 
     private String date;
     @Override
@@ -130,7 +136,19 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(FullName, email);
+
+                            try {
+                                passwd = new Register_pwd(email, password);
+                                secure_password = passwd.getSecure_password();
+                                salt = passwd.getSalt();
+                            } catch (NoSuchProviderException e) {
+                                e.printStackTrace();
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
+
+                            User user = new User(FullName, email, secure_password, salt);
+
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                             mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)

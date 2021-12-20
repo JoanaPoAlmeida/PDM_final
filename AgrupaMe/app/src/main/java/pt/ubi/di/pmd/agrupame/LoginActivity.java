@@ -90,6 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                         //redirect to user profile
                         Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(myIntent);
+
+
+
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Check your email to verify your account", Toast.LENGTH_LONG).show();
