@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -28,7 +30,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Calendar;
 
-public class RegisterActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private FirebaseAuth mAuth;
     private ImageView imgVBanner;
@@ -48,6 +50,12 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //tira a barra superior
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
@@ -61,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
         //Banner to firstActivity
         imgVBanner = (ImageView) findViewById(R.id.banner);
-        imgVBanner.setOnClickListener(this);
+        imgVBanner.setOnClickListener(this::onClick);
 
         //date of birth
         TextViewDateText = (TextView) findViewById(R.id.btnDate);
@@ -80,20 +88,8 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
         //Register Button
         ButtonRegister = (Button) findViewById(R.id.btnRegister);
-        ButtonRegister.setOnClickListener(this);
+        ButtonRegister.setOnClickListener(this::onClick);
 
-    }
-
-    public void onClick(View v){
-        switch(v.getId()){
-            case R.id.banner:
-                startActivity(new Intent(this, FirstActivity.class));
-                break;
-            case R.id.btnRegister:
-                registerUser();
-                break;
-
-        }
     }
 
 
@@ -118,12 +114,26 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.banner:
+                startActivity(new Intent(this, FirstActivity.class));
+                break;
+            case R.id.btnRegister:
+                registerUser();
+                break;
+
+        }
+    }
+
+
     //Regista o utilizador na base de dados e adiciona os campos a tabela Users na base de dados
     private void registerUser( ) {
         String FullName = etFullName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String gender = SpinnerGender.getSelectedItem().toString().trim();
-        String dateBirth = TextViewDateText.getText().toString().trim(); //PROVAVELMENTE EXISTE UM PROBLEMA AQUI--------------------------
+        String dateBirth = TextViewDateText.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
@@ -176,7 +186,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(FullName,  email, gender, dateBirth);
+                            User user = new User(FullName, email, gender, dateBirth);
 
                             try {
                                 passwd = new Register_pwd(email, password);
@@ -188,6 +198,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                                 e.printStackTrace();
                             }
 
+                            //Se autenticação for feita com sucesso adicionar dados do user a tabela users
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                             mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -216,7 +227,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                                 }
                             });
                             }else{
-                            Toast.makeText(RegisterActivity.this, "Failed to register! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Failed to connect! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
                         }
                     }
