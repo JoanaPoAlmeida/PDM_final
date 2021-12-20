@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimary">#DA9F39</item>
-    <item name="colorPrimaryDark">#000000</item>
-    <item name="colorAccent">#15AF89</item>
-</style>
-
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#DA9F39</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#15AF89</item>
+    </style>
 
     <style name="EditText" >
         <item name="android:layout_width">match_parent</item>
@@ -39,7 +38,7 @@
         <item name="android:layout_marginRight">40dp</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:background">@drawable/button</item>
-        <item name="android:padding">15dp</item>
+        <item name="android:padding">20dp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
 
         <item name="android:textColor">@color/white</item>
@@ -55,7 +54,7 @@
         <item name="android:layout_marginRight">40dp</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:background">@drawable/button_background</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:padding">15dp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
 
         <item name="android:textColor">@color/white</item>
@@ -82,7 +81,7 @@
 
     <style name="container_user">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_height">250dp</item>
         <item name="android:background">@drawable/container_components</item>
         <item name="android:layout_margin">20dp</item>
     </style>

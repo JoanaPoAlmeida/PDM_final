@@ -4,24 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whiteY"
     tools:context=".CreateTeams">
 
-    <TextView
-        android:id="@+id/title"
+    <View
+        android:id="@+id/containerTop"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Criar equipas"
-        android:textColor="#000000"
-        android:textSize="28sp"
+        android:layout_height="200dp"
+        android:background="@drawable/blue_container"
+        android:radius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Criar Equipas"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/containerTop"
+        app:layout_constraintTop_toTopOf="@+id/containerTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <EditText
         android:id="@+id/et_nameEve"
+
+        style="@style/EditText"
         android:layout_width="287dp"
         android:layout_height="46dp"
         android:layout_marginTop="332dp"
@@ -33,8 +46,9 @@
 
     <Button
         android:id="@+id/btn_addEve"
-        android:layout_width="305dp"
-        android:layout_height="53dp"
+        style="@style/subButton"
+        android:layout_width="312dp"
+        android:layout_height="66dp"
         android:backgroundTint="#F44336"
         android:onClick="submitbuttonHandler"
         android:text="Gerar equipa"
