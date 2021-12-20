@@ -36,7 +36,7 @@ public class Register_pwd {
     private static String SecurePassword(String password, byte[] salt){
         String generatedPassord = null;
         try{
-            MessageDigest msgDigest = MessageDigest.getInstance("SHA256");
+            MessageDigest msgDigest = MessageDigest.getInstance("MD5");
             msgDigest.update(salt);
             byte[] bytes = msgDigest.digest(password.getBytes());
 
@@ -53,7 +53,7 @@ public class Register_pwd {
 
     private static byte[] Secure_salt() throws NoSuchProviderException, NoSuchAlgorithmException {
         //Always use SecureRandom generator
-        SecureRandom secureRandom = SecureRandom.getInstance("MD5");
+        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
 
         //create array for salt
         byte[] salt = new byte[16]; //size of byte array = 16
