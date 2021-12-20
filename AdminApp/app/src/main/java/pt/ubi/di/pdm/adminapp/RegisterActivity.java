@@ -140,14 +140,14 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        mAuth.createUserWithEmailAndPassword(email, secure_password)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
 
-                            User user = new User(FullName, email, secure_password, salt);
+                            User user = new User(FullName, email, password);
 
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
